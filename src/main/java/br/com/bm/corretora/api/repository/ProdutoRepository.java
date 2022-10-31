@@ -1,6 +1,6 @@
-package br.com.bm.corretora.repository;
+package br.com.bm.corretora.api.repository;
 
-import br.com.bm.corretora.model.Produto;
+import br.com.bm.corretora.api.entity.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

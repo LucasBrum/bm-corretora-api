@@ -1,11 +1,9 @@
-package br.com.bm.corretora.model;
+package br.com.bm.corretora.api.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,8 +12,6 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Produto implements Serializable {
 
     @Id
@@ -38,7 +34,9 @@ public class Produto implements Serializable {
 
     private Double agenciamentoPorcentagem;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    @JsonIgnore
     private Cliente cliente;
+
 }

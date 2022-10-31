@@ -1,12 +1,11 @@
-package br.com.bm.corretora;
+package br.com.bm.corretora.api;
 
-import br.com.bm.corretora.enums.ProdutoEnum;
-import br.com.bm.corretora.enums.SeguradoraEnum;
-import br.com.bm.corretora.model.Cliente;
-import br.com.bm.corretora.model.Produto;
-import br.com.bm.corretora.repository.ClienteRepository;
-import br.com.bm.corretora.repository.ProdutoRepository;
-import net.bytebuddy.asm.Advice;
+import br.com.bm.corretora.api.repository.ClienteRepository;
+import br.com.bm.corretora.api.repository.ProdutoRepository;
+import br.com.bm.corretora.api.enums.ProdutoEnum;
+import br.com.bm.corretora.api.enums.SeguradoraEnum;
+import br.com.bm.corretora.api.entity.Cliente;
+import br.com.bm.corretora.api.entity.Produto;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +13,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
@@ -39,7 +36,7 @@ public class BmCorretoraApiApplication {
 			cliente.setEmail("lucas@gmail.com");
 			cliente.setTelefone("21986604321");
 
-			clienteRepository.save(cliente);
+			//clienteRepository.save(cliente);
 
 			Produto produto = new Produto();
 			produto.setCliente(cliente);
@@ -53,11 +50,23 @@ public class BmCorretoraApiApplication {
 			produto.setValorComissaoReceber(BigDecimal.valueOf(150.0));
 			produto.setValorPremioLiquido(BigDecimal.valueOf(300.0));
 
-			produtoList.add(produto);
+			Produto produto2 = new Produto();
+			produto2.setCliente(cliente);
+			produto2.setCoCorretagem(Boolean.TRUE);
+			produto2.setAgenciamentoPorcentagem(3.0);
+			produto2.setDataVigencia(LocalDate.now());
+			produto2.setSeguradora(SeguradoraEnum.PORTO.getNome());
+			produto2.setTipo(ProdutoEnum.AUTO.getNome());
+			produto2.setComissaoVendaPorcentagem(3.0);
+			produto2.setAgenciamentoPorcentagem(1.5);
+			produto2.setValorComissaoReceber(BigDecimal.valueOf(150.0));
+			produto2.setValorPremioLiquido(BigDecimal.valueOf(300.0));
 
-			cliente.setProdutos(produtoList);
-
+			clienteRepository.save(cliente);
 			produtoRepository.save(produto);
+			produtoRepository.save(produto2);
+
+
 
 		};
 	}

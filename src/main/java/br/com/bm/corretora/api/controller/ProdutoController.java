@@ -1,10 +1,8 @@
-package br.com.bm.corretora.controller;
+package br.com.bm.corretora.api.controller;
 
-import br.com.bm.corretora.enums.ProdutoEnum;
-import br.com.bm.corretora.model.Cliente;
-import br.com.bm.corretora.model.Produto;
-import br.com.bm.corretora.repository.ClienteRepository;
-import br.com.bm.corretora.repository.ProdutoRepository;
+import br.com.bm.corretora.api.enums.ProdutoEnum;
+import br.com.bm.corretora.api.repository.ProdutoRepository;
+import br.com.bm.corretora.api.entity.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

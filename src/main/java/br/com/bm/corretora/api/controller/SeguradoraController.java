@@ -1,6 +1,6 @@
-package br.com.bm.corretora.controller;
+package br.com.bm.corretora.api.controller;
 
-import br.com.bm.corretora.enums.SeguradoraEnum;
+import br.com.bm.corretora.api.enums.SeguradoraEnum;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

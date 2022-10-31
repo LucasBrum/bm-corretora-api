@@ -1,7 +1,7 @@
-package br.com.bm.corretora.controller;
+package br.com.bm.corretora.api.controller;
 
-import br.com.bm.corretora.model.Cliente;
-import br.com.bm.corretora.repository.ClienteRepository;
+import br.com.bm.corretora.api.repository.ClienteRepository;
+import br.com.bm.corretora.api.entity.Cliente;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
