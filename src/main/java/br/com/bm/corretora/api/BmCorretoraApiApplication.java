@@ -36,7 +36,12 @@ public class BmCorretoraApiApplication {
 			cliente.setEmail("lucas@gmail.com");
 			cliente.setTelefone("21986604321");
 
-			//clienteRepository.save(cliente);
+			Cliente cliente2 = new Cliente();
+			cliente2.setNome("Ester Finamore");
+			cliente2.setDataNascimento(LocalDate.now());
+			cliente2.setEmail("ester@gmail.com");
+			cliente2.setTelefone("219845445366");
+
 
 			Produto produto = new Produto();
 			produto.setCliente(cliente);
@@ -51,18 +56,19 @@ public class BmCorretoraApiApplication {
 			produto.setValorPremioLiquido(BigDecimal.valueOf(300.0));
 
 			Produto produto2 = new Produto();
-			produto2.setCliente(cliente);
+			produto2.setCliente(cliente2);
 			produto2.setCoCorretagem(Boolean.TRUE);
-			produto2.setAgenciamentoPorcentagem(3.0);
+			produto2.setAgenciamentoPorcentagem(20.0);
 			produto2.setDataVigencia(LocalDate.now());
 			produto2.setSeguradora(SeguradoraEnum.PORTO.getNome());
 			produto2.setTipo(ProdutoEnum.AUTO.getNome());
-			produto2.setComissaoVendaPorcentagem(3.0);
-			produto2.setAgenciamentoPorcentagem(1.5);
-			produto2.setValorComissaoReceber(BigDecimal.valueOf(150.0));
-			produto2.setValorPremioLiquido(BigDecimal.valueOf(300.0));
+			produto2.setComissaoVendaPorcentagem(2.0);
+			produto2.setAgenciamentoPorcentagem(2.5);
+			produto2.setValorComissaoReceber(BigDecimal.valueOf(1150.0));
+			produto2.setValorPremioLiquido(BigDecimal.valueOf(3000.0));
 
 			clienteRepository.save(cliente);
+			clienteRepository.save(cliente2);
 			produtoRepository.save(produto);
 			produtoRepository.save(produto2);
 
