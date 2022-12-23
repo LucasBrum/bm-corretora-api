@@ -1,5 +1,6 @@
 package br.com.bm.corretora.api.controller;
 
+import br.com.bm.corretora.api.dto.ClienteDTO;
 import br.com.bm.corretora.api.repository.ClienteRepository;
 import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.service.ClienteService;
@@ -24,9 +25,9 @@ public class ClienteController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Cliente> listar(@PathVariable Long id) {
+    public ResponseEntity<ClienteDTO> listar(@PathVariable Long id) {
         Cliente cliente = clienteService.findById(id);
 
-        return ResponseEntity.ok().body(cliente);
+        return ResponseEntity.ok().body(new ClienteDTO(cliente));
     }
 }
