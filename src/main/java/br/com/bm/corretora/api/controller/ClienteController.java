@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -29,5 +30,13 @@ public class ClienteController {
         Cliente cliente = clienteService.findById(id);
 
         return ResponseEntity.ok().body(new ClienteDTO(cliente));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClienteDTO>> findAll() {
+        List<Cliente> clienteList = clienteService.findAll();
+        List<ClienteDTO> clienteDTOList = clienteList.stream().map(cliente -> new ClienteDTO(cliente)).toList();
+
+        return ResponseEntity.ok().body(clienteDTOList);
     }
 }
