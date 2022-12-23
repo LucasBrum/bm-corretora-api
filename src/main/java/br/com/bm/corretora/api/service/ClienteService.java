@@ -1,5 +1,6 @@
 package br.com.bm.corretora.api.service;
 
+import br.com.bm.corretora.api.dto.ClienteDTO;
 import br.com.bm.corretora.api.entity.Cliente;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +12,6 @@ public interface ClienteService {
 	Cliente findById(Long id);
 
 	List<Cliente> findAll();
+
+	Cliente create(ClienteDTO clienteDTO);
 }

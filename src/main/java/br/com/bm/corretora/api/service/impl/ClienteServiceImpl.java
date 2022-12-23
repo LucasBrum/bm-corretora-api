@@ -1,5 +1,6 @@
 package br.com.bm.corretora.api.service.impl;
 
+import br.com.bm.corretora.api.dto.ClienteDTO;
 import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.repository.ClienteRepository;
@@ -30,5 +31,12 @@ public class ClienteServiceImpl implements ClienteService {
 	public List<Cliente> findAll() {
 
 		return clienteRepository.findAll();
+	}
+
+	@Override
+	public Cliente create(ClienteDTO clienteDTO) {
+		clienteDTO.setId(null);
+		Cliente cliente = new Cliente(clienteDTO);
+		return clienteRepository.save(cliente);
 	}
 }

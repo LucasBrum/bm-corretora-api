@@ -1,5 +1,6 @@
 package br.com.bm.corretora.api.entity;
 
+import br.com.bm.corretora.api.dto.ClienteDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -46,5 +47,14 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<Produto> produtos = new ArrayList<>();
 
+    public Cliente(ClienteDTO clienteDTO) {
+        super();
+        this.id = clienteDTO.getId();
+        this.nome = clienteDTO.getNome();
+        this.dataNascimento = clienteDTO.getDataNascimento();
+        this.email = clienteDTO.getEmail();
+        this.telefone = clienteDTO.getTelefone();
+        //this.produtos = clienteDTO.getProdutos();
+    }
 
 }
