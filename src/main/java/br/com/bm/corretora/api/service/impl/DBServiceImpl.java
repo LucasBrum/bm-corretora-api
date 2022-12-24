@@ -1,11 +1,14 @@
-package br.com.bm.corretora.api.service;
+package br.com.bm.corretora.api.service.impl;
 
 import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.entity.Produto;
+import br.com.bm.corretora.api.entity.Usuario;
+import br.com.bm.corretora.api.enums.PerfilEnum;
 import br.com.bm.corretora.api.enums.ProdutoEnum;
 import br.com.bm.corretora.api.enums.SeguradoraEnum;
 import br.com.bm.corretora.api.repository.ClienteRepository;
 import br.com.bm.corretora.api.repository.ProdutoRepository;
+import br.com.bm.corretora.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +18,36 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class DBService {
+public class DBServiceImpl {
 
 	private final ClienteRepository clienteRepository;
 
 	private final ProdutoRepository produtoRepository;
 
+	private final UsuarioRepository usuarioRepository;
+
 	@Autowired
-	public DBService(ClienteRepository clienteRepository, ProdutoRepository produtoRepository) {
+	public DBServiceImpl(
+			ClienteRepository clienteRepository,
+			ProdutoRepository produtoRepository,
+			UsuarioRepository usuarioRepository) {
 		this.clienteRepository = clienteRepository;
 		this.produtoRepository = produtoRepository;
+		this.usuarioRepository = usuarioRepository;
 	}
 
 	public void instanciaDB() {
 		clienteRepository.deleteAll();
 
 		Set<Produto> produtoList = new HashSet<>();
+
+		Usuario usuario = new Usuario();
+		usuario.setNome("Gabriel Brum");
+		usuario.setEmail("gabriel@gmail.com");
+		usuario.setCpf("04867005002");
+		usuario.setDataCriacao(LocalDate.now());
+		usuario.setSenha("1233456");
+		usuario.addPerfil(PerfilEnum.COLABORADOR);
 
 		Cliente cliente = new Cliente();
 		cliente.setNome("Lucas Brum");
@@ -72,6 +89,7 @@ public class DBService {
 		clienteRepository.save(cliente2);
 		produtoRepository.save(produto);
 		produtoRepository.save(produto2);
+		usuarioRepository.save(usuario);
 
 	}
 }

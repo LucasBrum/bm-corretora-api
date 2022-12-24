@@ -1,9 +1,12 @@
 package br.com.bm.corretora.api.entity;
 
+import br.com.bm.corretora.api.dto.UsuarioDTO;
 import br.com.bm.corretora.api.enums.PerfilEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -13,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -22,9 +26,10 @@ import java.util.stream.Collectors;
 @Data
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Usuario implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	@Serial private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,12 +57,15 @@ public class Usuario implements Serializable {
 		addPerfil(PerfilEnum.COLABORADOR);
 	}
 
-	public Usuario(Long id, String nome, String cpf, String email, String senha) {
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.email = email;
-		this.senha = senha;
+	public Usuario(UsuarioDTO usuarioDTO) {
+		super();
+		this.id = usuarioDTO.getId();
+		this.nome = usuarioDTO.getNome();
+		this.cpf = usuarioDTO.getCpf();
+		this.email = usuarioDTO.getEmail();
+		this.senha = usuarioDTO.getSenha();
+		this.perfis = usuarioDTO.getPerfis();
+		this.dataCriacao = usuarioDTO.getDataCriacao();
 	}
 
 	public Set<PerfilEnum> getPerfis() {

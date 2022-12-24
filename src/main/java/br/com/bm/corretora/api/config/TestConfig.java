@@ -1,6 +1,6 @@
 package br.com.bm.corretora.api.config;
 
-import br.com.bm.corretora.api.service.DBService;
+import br.com.bm.corretora.api.service.impl.DBServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class TestConfig {
 
-	private final DBService dbService;
+	private final DBServiceImpl dbService;
 
 	@Autowired
-	public TestConfig(DBService dbService) {
+	public TestConfig(DBServiceImpl dbService) {
 		this.dbService = dbService;
 	}
 

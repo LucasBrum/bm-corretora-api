@@ -5,6 +5,7 @@ import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.repository.ClienteRepository;
 import br.com.bm.corretora.api.service.ClienteService;
+import br.com.bm.corretora.api.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class ClienteServiceImpl implements ClienteService {
 	public Cliente findById(Long id) {
 		Optional<Cliente> cliente = clienteRepository.findById(id);
 
-		return cliente.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado!"));
+		return cliente.orElseThrow(() -> new ObjectNotFoundException(Messages.CLIENTE_NAO_ENCONTRADO));
 	}
 
 	@Override

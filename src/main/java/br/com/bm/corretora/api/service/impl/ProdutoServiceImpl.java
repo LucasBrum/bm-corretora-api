@@ -3,6 +3,7 @@ package br.com.bm.corretora.api.service.impl;
 import br.com.bm.corretora.api.dto.ProdutoDTO;
 import br.com.bm.corretora.api.entity.Produto;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
+import br.com.bm.corretora.api.util.Messages;
 import br.com.bm.corretora.api.repository.ProdutoRepository;
 import br.com.bm.corretora.api.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 	@Override
 	public Produto findById(Long id) {
 		Optional<Produto> produto = produtoRepository.findById(id);
-		return produto.orElseThrow(() -> new ObjectNotFoundException("Produto não encontrado."));
+		return produto.orElseThrow(() -> new ObjectNotFoundException(Messages.PRODUTO_NAO_ENCONTRADO));
 	}
 
 	@Override
