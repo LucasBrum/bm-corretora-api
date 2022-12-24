@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -19,11 +20,17 @@ public class ClienteDTO implements Serializable {
 
 	private Long id;
 
+	@NotNull(message = "O campo Nome é obrigatório.")
 	private String nome;
+
+	@NotNull(message = "O campo Telefone é obrigatório.")
 	private String telefone;
+
+	@NotNull(message = "O campo E-mail é obrigatório.")
 	private String email;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "O campo Data de Nascimento é obrigatório.")
 	private LocalDate dataNascimento;
 
 	//private List<Produto> produtos = new ArrayList<>();

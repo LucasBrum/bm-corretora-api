@@ -4,6 +4,7 @@ import br.com.bm.corretora.api.exception.DataIntegrityViolationException;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.exception.error.StandardError;
 import br.com.bm.corretora.api.exception.error.ValidationError;
+import br.com.bm.corretora.api.util.Messages;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -22,7 +23,7 @@ public class ResourceExceptionHandler {
 		StandardError standardError = new StandardError(
 				System.currentTimeMillis(),
 				HttpStatus.NOT_FOUND.value(),
-				"Object not found",
+				Messages.OBJECT_NOT_FOUND,
 				ex.getMessage(),
 				request.getRequestURI());
 
@@ -36,7 +37,7 @@ public class ResourceExceptionHandler {
 		StandardError standardError = new StandardError(
 				System.currentTimeMillis(),
 				HttpStatus.BAD_REQUEST.value(),
-				"Data Violation",
+				Messages.DATA_VALIDATION,
 				ex.getMessage(),
 				request.getRequestURI());
 
@@ -50,8 +51,8 @@ public class ResourceExceptionHandler {
 		ValidationError errors = new ValidationError(
 				System.currentTimeMillis(),
 				HttpStatus.BAD_REQUEST.value(),
-				"Validation Error",
-				"Erro na validação dos campos",
+				Messages.VALIDATION_ERROR,
+				Messages.ERRO_VALIDACAO_CAMPOS,
 				request.getRequestURI());
 
 		for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {

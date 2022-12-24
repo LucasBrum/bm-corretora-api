@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -26,13 +27,16 @@ public class ProdutoDTO implements Serializable {
 
 	private Long id;
 
+	@NotNull(message = "O campo Tipo de Produto é obrigatório.")
 	private String tipo;
 
+	@NotNull(message = "O campo Seguradora é obrigatório.")
 	private String seguradora;
 
 	private Boolean coCorretagem;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "O campo Data de Vigência é obrigatório.")
 	private LocalDate dataVigencia;
 
 	private BigDecimal valorPremioLiquido;
@@ -43,6 +47,7 @@ public class ProdutoDTO implements Serializable {
 
 	private Double agenciamentoPorcentagem;
 
+	@NotNull(message = "O campo Cliente é obrigatório.")
 	private Cliente cliente;
 
 	public ProdutoDTO(Produto produto) {
