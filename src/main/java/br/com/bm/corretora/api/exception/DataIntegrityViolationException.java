@@ -2,15 +2,17 @@ package br.com.bm.corretora.api.exception;
 
 import java.io.Serial;
 
-public class ObjectNotFoundException extends RuntimeException {
+public class DataIntegrityViolationException extends RuntimeException {
 
 	@Serial private static final long serialVersionUID = 1L;
 
-	public ObjectNotFoundException(String message) {
+	public DataIntegrityViolationException(String message) {
+
 		super(message);
 	}
 
-	public ObjectNotFoundException(String message, Throwable cause) {
+	public DataIntegrityViolationException(String message, Throwable cause) {
+
 		super(message, cause);
 	}
 }

@@ -1,5 +1,7 @@
-package br.com.bm.corretora.api.exception;
+package br.com.bm.corretora.api.exception.handler;
 
+import br.com.bm.corretora.api.exception.DataIntegrityViolationException;
+import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.exception.error.StandardError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,25 @@ public class ResourceExceptionHandler {
 		StandardError standardError = new StandardError(
 				System.currentTimeMillis(),
 				HttpStatus.NOT_FOUND.value(),
-				"Object Not Foud",
+				"Objeto não encontrado",
 				ex.getMessage(),
 				request.getRequestURI());
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(standardError);
+
+	}
+
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
+
+		StandardError standardError = new StandardError(
+				System.currentTimeMillis(),
+				HttpStatus.BAD_REQUEST.value(),
+				"Violação de Dados",
+				ex.getMessage(),
+				request.getRequestURI());
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(standardError);
 
 	}
 }

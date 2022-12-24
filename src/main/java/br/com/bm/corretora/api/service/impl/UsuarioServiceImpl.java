@@ -2,6 +2,7 @@ package br.com.bm.corretora.api.service.impl;
 
 import br.com.bm.corretora.api.dto.UsuarioDTO;
 import br.com.bm.corretora.api.entity.Usuario;
+import br.com.bm.corretora.api.exception.DataIntegrityViolationException;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.repository.UsuarioRepository;
 import br.com.bm.corretora.api.service.UsuarioService;
@@ -37,7 +38,25 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario create(UsuarioDTO usuarioDTO) {
 		usuarioDTO.setId(null);
-		Usuario cliente = new Usuario(usuarioDTO);
-		return usuarioRepository.save(cliente);
+
+		validaCPF(usuarioDTO);
+		validaEmail(usuarioDTO);
+
+		Usuario usuario = new Usuario(usuarioDTO);
+		return usuarioRepository.save(usuario);
+	}
+
+	private void validaCPF(UsuarioDTO usuarioDTO) {
+		Optional<Usuario> usuario = usuarioRepository.findByCpf(usuarioDTO.getCpf());
+		if (usuario.isPresent()) {
+			throw new DataIntegrityViolationException(Messages.CPF_JA_CADASTRADO);
+		}
+	}
+
+	private void validaEmail(UsuarioDTO usuarioDTO) {
+		Optional<Usuario> usuario = usuarioRepository.findByEmail(usuarioDTO.getEmail());
+		if (usuario.isPresent()) {
+			throw new DataIntegrityViolationException(Messages.EMAIL_JA_CADASTRADO);
+		}
 	}
 }

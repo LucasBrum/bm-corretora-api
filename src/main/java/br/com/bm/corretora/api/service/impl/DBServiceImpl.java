@@ -45,7 +45,6 @@ public class DBServiceImpl {
 		usuario.setNome("Gabriel Brum");
 		usuario.setEmail("gabriel@gmail.com");
 		usuario.setCpf("04867005002");
-		usuario.setDataCriacao(LocalDate.now());
 		usuario.setSenha("1233456");
 		usuario.addPerfil(PerfilEnum.COLABORADOR);
 
