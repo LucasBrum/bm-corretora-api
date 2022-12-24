@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +51,7 @@ public class ProdutoController {
         return ResponseEntity.ok().body(produtoDTOList);
     }
 
-    public ResponseEntity<ProdutoDTO> create(@RequestBody ProdutoDTO produtoDTO) {
+    public ResponseEntity<ProdutoDTO> create(@Valid @RequestBody ProdutoDTO produtoDTO) {
         Produto produto = produtoService.create(produtoDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getId()).toUri();
         return ResponseEntity.created(uri).build();

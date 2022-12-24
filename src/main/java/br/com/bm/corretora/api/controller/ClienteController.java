@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<ClienteDTO> create(@Valid  @RequestBody ClienteDTO clienteDTO) {
         Cliente cliente = clienteService.create(clienteDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
         return ResponseEntity.created(uri).build();

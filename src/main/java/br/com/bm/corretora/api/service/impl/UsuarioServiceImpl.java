@@ -10,6 +10,7 @@ import br.com.bm.corretora.api.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,16 +47,30 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 
+	@Override
+	public Usuario update(Long id, @Valid UsuarioDTO usuarioDTO) {
+		usuarioDTO.setId(id);
+
+		Usuario usuarioEncontrado = findById(id);
+
+		validaCPF(usuarioDTO);
+		validaEmail(usuarioDTO);
+
+		usuarioEncontrado = new Usuario(usuarioDTO);
+
+		return usuarioRepository.save(usuarioEncontrado);
+	}
+
 	private void validaCPF(UsuarioDTO usuarioDTO) {
 		Optional<Usuario> usuario = usuarioRepository.findByCpf(usuarioDTO.getCpf());
-		if (usuario.isPresent()) {
+		if (usuario.isPresent() && usuario.get().getId() != usuarioDTO.getId()) {
 			throw new DataIntegrityViolationException(Messages.CPF_JA_CADASTRADO);
 		}
 	}
 
 	private void validaEmail(UsuarioDTO usuarioDTO) {
 		Optional<Usuario> usuario = usuarioRepository.findByEmail(usuarioDTO.getEmail());
-		if (usuario.isPresent()) {
+		if (usuario.isPresent() && usuario.get().getId() != usuarioDTO.getId()) {
 			throw new DataIntegrityViolationException(Messages.EMAIL_JA_CADASTRADO);
 		}
 	}
