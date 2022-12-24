@@ -1,7 +1,6 @@
 package br.com.bm.corretora.api.controller;
 
 import br.com.bm.corretora.api.dto.ClienteDTO;
-import br.com.bm.corretora.api.repository.ClienteRepository;
 import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -30,7 +28,7 @@ public class ClienteController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ClienteDTO> listar(@PathVariable Long id) {
+    public ResponseEntity<ClienteDTO> findById(@PathVariable Long id) {
         Cliente cliente = clienteService.findById(id);
 
         return ResponseEntity.ok().body(new ClienteDTO(cliente));
@@ -45,7 +43,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> create (@RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO clienteDTO) {
         Cliente cliente = clienteService.create(clienteDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
         return ResponseEntity.created(uri).build();

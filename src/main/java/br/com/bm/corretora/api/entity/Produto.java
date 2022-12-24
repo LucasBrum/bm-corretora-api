@@ -1,5 +1,6 @@
 package br.com.bm.corretora.api.entity;
 
+import br.com.bm.corretora.api.dto.ProdutoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,7 +23,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Produto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @Serial private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,5 +49,18 @@ public class Produto implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    public Produto(ProdutoDTO produtoDTO) {
+        this.id = produtoDTO.getId();
+        this.tipo = produtoDTO.getTipo();
+        this.seguradora = produtoDTO.getSeguradora();
+        this.coCorretagem = produtoDTO.getCoCorretagem();
+        this.dataVigencia = produtoDTO.getDataVigencia();
+        this.valorPremioLiquido = produtoDTO.getValorPremioLiquido();
+        this.comissaoVendaPorcentagem = produtoDTO.getComissaoVendaPorcentagem();
+        this.valorComissaoReceber = produtoDTO.getValorComissaoReceber();
+        this.agenciamentoPorcentagem = produtoDTO.getAgenciamentoPorcentagem();
+        this.cliente = produtoDTO.getCliente();
+    }
 
 }
