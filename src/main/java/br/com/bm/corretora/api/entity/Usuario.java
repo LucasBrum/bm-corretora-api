@@ -49,9 +49,6 @@ public class Usuario implements Serializable {
 	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
 
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataCriacao = LocalDate.now();
-
 	public Usuario(Long id) {
 		super();
 		addPerfil(PerfilEnum.COLABORADOR);
@@ -65,7 +62,6 @@ public class Usuario implements Serializable {
 		this.email = usuarioDTO.getEmail();
 		this.senha = usuarioDTO.getSenha();
 		this.perfis = usuarioDTO.getPerfis();
-		this.dataCriacao = usuarioDTO.getDataCriacao();
 	}
 
 	public Set<PerfilEnum> getPerfis() {

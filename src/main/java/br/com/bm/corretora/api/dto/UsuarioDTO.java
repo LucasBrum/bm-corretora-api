@@ -27,7 +27,6 @@ public class UsuarioDTO implements Serializable {
 	private String senha;
 
 	private Set<Integer> perfis = new HashSet<>();
-	private LocalDate dataCriacao;
 
 	public UsuarioDTO(Usuario usuario) {
 		super();
@@ -37,7 +36,6 @@ public class UsuarioDTO implements Serializable {
 		this.email = usuario.getEmail();
 		this.senha = usuario.getSenha();
 		this.perfis = usuario.getPerfis().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
-		this.dataCriacao = usuario.getDataCriacao();
 
 	}
 }
