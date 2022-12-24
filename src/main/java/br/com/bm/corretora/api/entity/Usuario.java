@@ -61,7 +61,7 @@ public class Usuario implements Serializable {
 		this.cpf = usuarioDTO.getCpf();
 		this.email = usuarioDTO.getEmail();
 		this.senha = usuarioDTO.getSenha();
-		this.perfis = usuarioDTO.getPerfis();
+		addPerfil(PerfilEnum.COLABORADOR);
 	}
 
 	public Set<PerfilEnum> getPerfis() {
