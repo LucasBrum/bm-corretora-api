@@ -34,21 +34,6 @@ public class ClienteServiceTests {
 
     @BeforeEach
     public void setup() {
-//        Produto produto = Produto.builder()
-//                .id(1L)
-//                .agenciamentoPorcentagem(2.0)
-//                .coCorretagem(Boolean.FALSE)
-//                .comissaoVendaPorcentagem(1.0)
-//                .dataVigencia(LocalDate.now())
-//                .seguradora(SeguradoraEnum.PORTO.getNome())
-//                .tipo(ProdutoEnum.AUTO.getNome())
-//                .valorComissaoReceber(new BigDecimal(100.0))
-//                .valorPremioLiquido(new BigDecimal(200.0))
-//                .build();
-//
-//        List<Produto> produtoList = new ArrayList<>();
-//        produtoList.add(produto);
-
         clienteDTO = ClienteDTO.builder()
                 .nome("Anderson Silva")
                 .email("andersonsilva@gmail.com")
@@ -57,7 +42,6 @@ public class ClienteServiceTests {
                 .build();
 
         cliente = new Cliente(clienteDTO);
-
     }
 
     @Test

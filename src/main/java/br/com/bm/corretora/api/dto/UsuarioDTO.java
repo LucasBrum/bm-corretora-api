@@ -4,6 +4,7 @@ import br.com.bm.corretora.api.entity.Usuario;
 import br.com.bm.corretora.api.enums.PerfilEnum;
 import br.com.bm.corretora.api.util.Messages;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
+@Builder
 @AllArgsConstructor
 public class UsuarioDTO implements Serializable {
 
