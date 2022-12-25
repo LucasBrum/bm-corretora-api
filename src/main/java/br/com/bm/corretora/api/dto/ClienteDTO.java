@@ -3,6 +3,7 @@ package br.com.bm.corretora.api.dto;
 import br.com.bm.corretora.api.entity.Cliente;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClienteDTO implements Serializable {
