@@ -2,10 +2,10 @@ package br.com.bm.corretora.api.service.impl;
 
 import br.com.bm.corretora.api.dto.UsuarioDTO;
 import br.com.bm.corretora.api.entity.Usuario;
+import br.com.bm.corretora.api.service.UsuarioService;
 import br.com.bm.corretora.api.exception.DataIntegrityViolationException;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.repository.UsuarioRepository;
-import br.com.bm.corretora.api.service.UsuarioService;
 import br.com.bm.corretora.api.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +59,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuarioEncontrado = new Usuario(usuarioDTO);
 
 		return usuarioRepository.save(usuarioEncontrado);
+	}
+
+	@Override
+	public void delete(Long id) {
+		Usuario usuarioEncontrado = findById(id);
+
+		if (usuarioEncontrado == null) {
+			throw new DataIntegrityViolationException(Messages.USUARIO_NAO_ENCONTRADO);
+		}
+
+		usuarioRepository.deleteById(id);
 	}
 
 	private void validaCPF(UsuarioDTO usuarioDTO) {

@@ -2,10 +2,10 @@ package br.com.bm.corretora.api.service.impl;
 
 import br.com.bm.corretora.api.dto.ProdutoDTO;
 import br.com.bm.corretora.api.entity.Produto;
+import br.com.bm.corretora.api.service.ProdutoService;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.util.Messages;
 import br.com.bm.corretora.api.repository.ProdutoRepository;
-import br.com.bm.corretora.api.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

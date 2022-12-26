@@ -14,4 +14,9 @@ public interface ClienteService {
 	List<Cliente> findAll();
 
 	Cliente create(ClienteDTO clienteDTO);
+
+	Cliente update(Long id, ClienteDTO clienteDTO);
+
+	void delete(Long id);
+
 }

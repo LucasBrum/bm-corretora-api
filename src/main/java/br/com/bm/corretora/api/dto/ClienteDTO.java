@@ -25,6 +25,9 @@ public class ClienteDTO implements Serializable {
 	@NotNull(message = "O campo Nome é obrigatório.")
 	private String nome;
 
+	@NotNull(message = "O campo CPF é obrigatório.")
+	private String cpf;
+
 	@NotNull(message = "O campo Telefone é obrigatório.")
 	private String telefone;
 
@@ -41,6 +44,7 @@ public class ClienteDTO implements Serializable {
 		super();
 		this.id = cliente.getId();
 		this.nome = cliente.getNome();
+		this.cpf = cliente.getCpf();
 		this.dataNascimento = cliente.getDataNascimento();
 		this.email = cliente.getEmail();
 		this.telefone = cliente.getTelefone();

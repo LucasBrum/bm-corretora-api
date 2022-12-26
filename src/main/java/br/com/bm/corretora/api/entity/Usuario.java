@@ -2,12 +2,10 @@ package br.com.bm.corretora.api.entity;
 
 import br.com.bm.corretora.api.dto.UsuarioDTO;
 import br.com.bm.corretora.api.enums.PerfilEnum;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -19,7 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;

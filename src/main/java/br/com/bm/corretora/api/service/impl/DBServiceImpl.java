@@ -50,12 +50,14 @@ public class DBServiceImpl {
 
 		Cliente cliente = new Cliente();
 		cliente.setNome("Lucas Brum");
+		cliente.setCpf("21130907082");
 		cliente.setDataNascimento(LocalDate.now());
 		cliente.setEmail("lucas@gmail.com");
 		cliente.setTelefone("21986604321");
 
 		Cliente cliente2 = new Cliente();
 		cliente2.setNome("Ester Finamore");
+		cliente2.setCpf("73712584016");
 		cliente2.setDataNascimento(LocalDate.now());
 		cliente2.setEmail("ester@gmail.com");
 		cliente2.setTelefone("219845445366");
