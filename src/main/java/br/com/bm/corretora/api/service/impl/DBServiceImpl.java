@@ -46,6 +46,7 @@ public class DBServiceImpl {
 		usuario.setEmail("gabriel@gmail.com");
 		usuario.setCpf("04867005002");
 		usuario.setSenha("1233456");
+		usuario.setTelefone("21986643211");
 		usuario.addPerfil(PerfilEnum.COLABORADOR);
 
 		Cliente cliente = new Cliente();

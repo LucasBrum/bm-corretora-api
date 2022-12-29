@@ -19,44 +19,35 @@ import java.util.List;
 @Data
 @Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Cliente implements Serializable {
+public class Cliente extends Pessoa {
 
-    @Serial private static final long serialVersionUID = 1L;
+	@Serial private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(length = 400, nullable = false)
-    private String nome;
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente")
+	private List<Produto> produtos = new ArrayList<>();
 
-    @CPF
-    @Column(unique = true)
-    private String cpf;
+	public Cliente(Long id, List<Produto> produtos) {
+		this.id = id;
+		this.produtos = produtos;
+	}
 
-    @Column(length = 13, nullable = false)
-    private String telefone;
+	public Cliente(Long id, String nome, String cpf, String email, String senha, Long id1, List<Produto> produtos) {
+		super(id, nome, cpf, email, senha);
+	}
 
-    @Column(length = 200, nullable = false)
-    private String email;
-
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataNascimento;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "cliente")
-    private List<Produto> produtos = new ArrayList<>();
-
-    public Cliente(ClienteDTO clienteDTO) {
-        super();
-        this.id = clienteDTO.getId();
-        this.nome = clienteDTO.getNome();
-        this.dataNascimento = clienteDTO.getDataNascimento();
-        this.email = clienteDTO.getEmail();
-        this.telefone = clienteDTO.getTelefone();
-        //this.produtos = clienteDTO.getProdutos();
-    }
+	public Cliente(ClienteDTO clienteDTO) {
+		super();
+		this.id = clienteDTO.getId();
+		this.nome = clienteDTO.getNome();
+		this.dataNascimento = clienteDTO.getDataNascimento();
+		this.email = clienteDTO.getEmail();
+		this.telefone = clienteDTO.getTelefone();
+	}
 
 }
