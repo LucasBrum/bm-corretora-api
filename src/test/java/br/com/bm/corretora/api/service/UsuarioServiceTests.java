@@ -21,6 +21,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UsuarioServiceTests {
@@ -139,4 +140,23 @@ public class UsuarioServiceTests {
         assertThat(usuarioAtualizado).isNotNull();
         assertThat(usuarioAtualizado.getNome()).isEqualTo("Alex Silva 123");
     }
+
+    @Test
+    @DisplayName("Deletar Usuário")
+    public void testDeleteUsuario() {
+        usuario.setId(1L);
+        given(usuarioRepository.findById(1L)).willReturn(Optional.ofNullable(usuario));
+        Usuario usuarioEncontrado = usuarioService.findById(1L);
+
+        usuarioEncontrado.setNome("Alex Silva 123");
+
+        usuarioDTO = new UsuarioDTO(usuarioEncontrado);
+
+        doNothing().when(usuarioRepository).deleteById(usuarioEncontrado.getId());
+
+        usuarioService.delete(usuarioEncontrado.getId());
+
+       verify(usuarioRepository, times(1)).deleteById(usuarioEncontrado.getId());
+    }
+
 }

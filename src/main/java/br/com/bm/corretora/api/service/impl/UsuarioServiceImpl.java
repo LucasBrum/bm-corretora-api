@@ -27,7 +27,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario findById(Long id) {
 		Optional<Usuario> cliente = usuarioRepository.findById(id);
 
-		return cliente.orElseThrow(() -> new ObjectNotFoundException(Messages.CLIENTE_NAO_ENCONTRADO));
+		return cliente.orElseThrow(() -> new ObjectNotFoundException(Messages.USUARIO_NAO_ENCONTRADO));
 	}
 
 	@Override
@@ -64,10 +64,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void delete(Long id) {
 		Usuario usuarioEncontrado = findById(id);
-
-		if (usuarioEncontrado == null) {
-			throw new DataIntegrityViolationException(Messages.USUARIO_NAO_ENCONTRADO);
-		}
 
 		usuarioRepository.deleteById(id);
 	}
