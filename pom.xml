@@ -91,4 +91,7 @@
 		</plugins>
 	</build>
 
+<!--# Configurar o Coverage em algum momento	-->
+<!--https://gainjavaknowledge.medium.com/spring-boot-code-analysis-with-sonarqube-4d953ca8f09e&ndash;&gt;-->
+
 </project>

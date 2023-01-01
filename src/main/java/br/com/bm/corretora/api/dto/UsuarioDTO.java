@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
@@ -25,11 +26,14 @@ public class UsuarioDTO implements Serializable {
 
 	private Long id;
 
-	@NotNull(message = "O campo Nome é obrigatório.")
+	@NotBlank(message = "O campo Nome é obrigatório.")
 	private String nome;
 
 	@NotNull(message = "O campo CPF é obrigatório.")
 	private String cpf;
+
+	@NotNull(message = "O campo Telefone é obrigatório.")
+	private String telefone;
 
 	@NotNull(message = "O campo E-mail é obrigatório.")
 	private String email;
@@ -49,6 +53,7 @@ public class UsuarioDTO implements Serializable {
 		this.id = usuario.getId();
 		this.nome = usuario.getNome();
 		this.cpf = usuario.getCpf();
+		this.telefone = usuario.getTelefone();
 		this.email = usuario.getEmail();
 		this.senha = usuario.getSenha();
 		this.perfis = usuario.getPerfis().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());

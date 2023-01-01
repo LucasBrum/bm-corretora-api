@@ -45,6 +45,7 @@ public class Cliente extends Pessoa {
 		super();
 		this.id = clienteDTO.getId();
 		this.nome = clienteDTO.getNome();
+		this.cpf = clienteDTO.getCpf();
 		this.dataNascimento = clienteDTO.getDataNascimento();
 		this.email = clienteDTO.getEmail();
 		this.telefone = clienteDTO.getTelefone();
