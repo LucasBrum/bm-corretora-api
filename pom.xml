@@ -74,6 +74,20 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>br/com/bm/corretora/api/dto/**</exclude>
+						<exclude>br/com/bm/corretora/api/entity/**</exclude>
+						<exclude>br/com/bm/corretora/api/enums/**</exclude>
+						<exclude>br/com/bm/corretora/api/exception/**</exclude>
+						<exclude>br/com/bm/corretora/api/util/**</exclude>
+						<exclude>br/com/bm/corretora/api/config/**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
