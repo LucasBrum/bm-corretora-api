@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ public class ClienteDTO implements Serializable {
 
 	private Long id;
 
-	@NotNull(message = "O campo Nome é obrigatório.")
+	@NotBlank(message = "O campo Nome é obrigatório.")
 	private String nome;
 
 	@NotNull(message = "O campo CPF é obrigatório.")

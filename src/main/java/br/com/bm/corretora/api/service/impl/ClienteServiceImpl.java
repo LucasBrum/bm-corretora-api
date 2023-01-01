@@ -40,6 +40,9 @@ public class ClienteServiceImpl implements ClienteService {
 		clienteDTO.setId(null);
 		Cliente cliente = new Cliente(clienteDTO);
 
+		validaCPF(clienteDTO);
+		validaEmail(clienteDTO);
+
 		return clienteRepository.save(cliente);
 
 	}
