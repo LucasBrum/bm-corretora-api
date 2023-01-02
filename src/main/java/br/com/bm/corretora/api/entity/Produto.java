@@ -62,7 +62,6 @@ public class Produto implements Serializable {
         this.comissaoVendaPorcentagem = produtoDTO.getComissaoVendaPorcentagem();
         this.valorComissaoReceber = produtoDTO.getValorComissaoReceber();
         this.agenciamentoPorcentagem = produtoDTO.getAgenciamentoPorcentagem();
-        this.cliente = produtoDTO.getCliente();
     }
 
 }

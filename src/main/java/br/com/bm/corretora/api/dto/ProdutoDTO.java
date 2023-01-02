@@ -1,6 +1,5 @@
 package br.com.bm.corretora.api.dto;
 
-import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.entity.Produto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -8,11 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
@@ -50,7 +44,9 @@ public class ProdutoDTO implements Serializable {
 	private Double agenciamentoPorcentagem;
 
 	@NotNull(message = "O campo Cliente é obrigatório.")
-	private Cliente cliente;
+	private Long idCliente;
+
+	private String nomeCliente;
 
 	public ProdutoDTO(Produto produto) {
 		this.id = produto.getId();
@@ -62,6 +58,7 @@ public class ProdutoDTO implements Serializable {
 		this.comissaoVendaPorcentagem = produto.getComissaoVendaPorcentagem();
 		this.valorComissaoReceber = produto.getValorComissaoReceber();
 		this.agenciamentoPorcentagem = produto.getAgenciamentoPorcentagem();
-		this.cliente = produto.getCliente();
+		this.idCliente = produto.getCliente().getId();
+		this.nomeCliente = produto.getCliente().getNome();
 	}
 }
