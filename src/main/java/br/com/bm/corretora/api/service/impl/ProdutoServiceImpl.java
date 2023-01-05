@@ -1,7 +1,9 @@
 package br.com.bm.corretora.api.service.impl;
 
 import br.com.bm.corretora.api.dto.ProdutoDTO;
+import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.entity.Produto;
+import br.com.bm.corretora.api.service.ClienteService;
 import br.com.bm.corretora.api.service.ProdutoService;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.util.Messages;
@@ -17,9 +19,12 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	private final ProdutoRepository produtoRepository;
 
+	private final ClienteService clienteService;
+
 	@Autowired
-	public ProdutoServiceImpl(ProdutoRepository produtoRepository) {
+	public ProdutoServiceImpl(ProdutoRepository produtoRepository, ClienteService clienteService) {
 		this.produtoRepository = produtoRepository;
+		this.clienteService = clienteService;
 	}
 
 	@Override
@@ -35,8 +40,17 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public Produto create(ProdutoDTO produtoDTO) {
+		Cliente cliente = clienteService.findById(produtoDTO.getIdCliente());
+
 		produtoDTO.setId(null);
+
 		Produto produto = new Produto(produtoDTO);
+		produto.setCliente(cliente);
 		return produtoRepository.save(produto);
+	}
+
+	private void newProduto(ProdutoDTO produtoDTO) {
+
+
 	}
 }
