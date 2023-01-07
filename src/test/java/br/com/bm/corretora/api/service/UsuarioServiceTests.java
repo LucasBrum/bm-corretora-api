@@ -5,7 +5,6 @@ import br.com.bm.corretora.api.entity.Usuario;
 import br.com.bm.corretora.api.exception.DataIntegrityViolationException;
 import br.com.bm.corretora.api.repository.UsuarioRepository;
 import br.com.bm.corretora.api.service.impl.UsuarioServiceImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
@@ -70,7 +70,7 @@ public class UsuarioServiceTests {
         Usuario usuarioEncontrado = usuarioService.findById(1L);
 
         DataIntegrityViolationException dataIntegrityViolationException;
-        dataIntegrityViolationException = Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
+        dataIntegrityViolationException = assertThrows(DataIntegrityViolationException.class, () -> {
             this.usuarioService.create(usuarioDTO);
         });
 
@@ -88,7 +88,7 @@ public class UsuarioServiceTests {
         Usuario usuarioEncontrado = usuarioService.findById(1L);
 
         DataIntegrityViolationException dataIntegrityViolationException;
-        dataIntegrityViolationException = Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
+        dataIntegrityViolationException = assertThrows(DataIntegrityViolationException.class, () -> {
             this.usuarioService.create(usuarioDTO);
         });
 

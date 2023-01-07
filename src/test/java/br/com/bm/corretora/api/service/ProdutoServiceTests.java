@@ -5,6 +5,7 @@ import br.com.bm.corretora.api.entity.Produto;
 import br.com.bm.corretora.api.enums.ProdutoEnum;
 import br.com.bm.corretora.api.enums.SeguradoraEnum;
 import br.com.bm.corretora.api.repository.ProdutoRepository;
+import br.com.bm.corretora.api.service.impl.ClienteServiceImpl;
 import br.com.bm.corretora.api.service.impl.ProdutoServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +28,9 @@ public class ProdutoServiceTests {
 
     @InjectMocks
     private ProdutoServiceImpl produtoService;
+
+    @Mock
+    private ClienteService clienteService;
 
     @Mock
     private ProdutoRepository produtoRepository;
@@ -65,7 +69,7 @@ public class ProdutoServiceTests {
 
     @Test
     @DisplayName("Buscar Produto pelo Id")
-    public void testFindClienteById() {
+    public void testFindProdutoById() {
         BDDMockito.given(produtoRepository.findById(1L)).willReturn(Optional.ofNullable(produto));
 
         Produto produtoCriado = produtoService.findById(1L);
@@ -76,7 +80,7 @@ public class ProdutoServiceTests {
 
     @Test
     @DisplayName("Buscar todos os Produtos")
-    public void testFindAllClientes() {
+    public void testFindAllProdutos() {
         List<Produto> produtoList = new ArrayList<>();
         produtoList.add(produto);
         BDDMockito.given(produtoRepository.findAll()).willReturn(produtoList);
@@ -85,6 +89,20 @@ public class ProdutoServiceTests {
 
         Assertions.assertThat(produtosEncontrados).isNotNull();
         Assertions.assertThat(produtosEncontrados.size()).isEqualTo(1);
+
+    }
+
+    @Test
+    @DisplayName("Atualizar Produto pelo Id")
+    public void testUpdate() {
+        BDDMockito.given(produtoRepository.findById(1L)).willReturn(Optional.ofNullable(produto));
+
+        produtoDTO.setSeguradora(SeguradoraEnum.ALFA.getNome());
+
+        Produto produtoEncontrado = produtoService.update(1L, produtoDTO);
+
+        Assertions.assertThat(produtoEncontrado).isNotNull();
+        Assertions.assertThat(produtoEncontrado.getSeguradora()).isEqualTo(SeguradoraEnum.ALFA.getNome());
 
     }
 
