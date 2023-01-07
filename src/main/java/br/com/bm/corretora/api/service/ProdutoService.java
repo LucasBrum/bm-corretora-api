@@ -11,4 +11,6 @@ public interface ProdutoService {
 	List<Produto> findAll();
 
 	Produto create(ProdutoDTO produtoDTO);
+
+	Produto update(Long id, ProdutoDTO produtoDTO);
 }

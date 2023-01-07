@@ -11,6 +11,7 @@ import br.com.bm.corretora.api.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,8 +50,28 @@ public class ProdutoServiceImpl implements ProdutoService {
 		return produtoRepository.save(produto);
 	}
 
-	private void newProduto(ProdutoDTO produtoDTO) {
+	@Override
+	public Produto update(Long id, @Valid ProdutoDTO produtoDTO) {
+		produtoDTO.setId(id);
 
+		Produto oldProduto = findById(id);
+		Produto produto = new Produto();
+		if (oldProduto != null) {
+			produto.setId(produtoDTO.getId());
+			produto.setCoCorretagem(produtoDTO.getCoCorretagem());
+			produto.setAgenciamentoPorcentagem(produtoDTO.getAgenciamentoPorcentagem());
+			produto.setComissaoVendaPorcentagem(produtoDTO.getComissaoVendaPorcentagem());
+			produto.setDataVigencia(produtoDTO.getDataVigencia());
+			produto.setSeguradora(produtoDTO.getSeguradora());
+			produto.setTipo(produtoDTO.getTipo());
+			produto.setValorComissaoReceber(produtoDTO.getValorComissaoReceber());
+			produto.setValorPremioLiquido(produtoDTO.getValorPremioLiquido());
+			produto.setCliente(oldProduto.getCliente());
 
+			produtoRepository.save(produto);
+		}
+
+		return produto;
 	}
+
 }
