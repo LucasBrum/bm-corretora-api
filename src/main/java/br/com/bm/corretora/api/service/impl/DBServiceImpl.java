@@ -10,6 +10,7 @@ import br.com.bm.corretora.api.repository.ClienteRepository;
 import br.com.bm.corretora.api.repository.ProdutoRepository;
 import br.com.bm.corretora.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -26,14 +27,18 @@ public class DBServiceImpl {
 
 	private final UsuarioRepository usuarioRepository;
 
+	private final BCryptPasswordEncoder encoder;
+
 	@Autowired
 	public DBServiceImpl(
 			ClienteRepository clienteRepository,
 			ProdutoRepository produtoRepository,
-			UsuarioRepository usuarioRepository) {
+			UsuarioRepository usuarioRepository,
+			BCryptPasswordEncoder encoder) {
 		this.clienteRepository = clienteRepository;
 		this.produtoRepository = produtoRepository;
 		this.usuarioRepository = usuarioRepository;
+		this.encoder = encoder;
 	}
 
 	public void instanciaDB() {
@@ -45,7 +50,7 @@ public class DBServiceImpl {
 		usuario.setNome("Gabriel Brum");
 		usuario.setEmail("gabriel@gmail.com");
 		usuario.setCpf("04867005002");
-		usuario.setSenha("1233456");
+		usuario.setSenha(encoder.encode("1233456"));
 		usuario.setTelefone("21986643211");
 		usuario.addPerfil(PerfilEnum.COLABORADOR);
 

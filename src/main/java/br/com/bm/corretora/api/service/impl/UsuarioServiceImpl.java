@@ -8,6 +8,7 @@ import br.com.bm.corretora.api.exception.ObjectNotFoundException;
 import br.com.bm.corretora.api.repository.UsuarioRepository;
 import br.com.bm.corretora.api.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -19,9 +20,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	private final UsuarioRepository usuarioRepository;
 
+	private final BCryptPasswordEncoder encoder;
+
 	@Autowired
-	public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
+	public UsuarioServiceImpl(UsuarioRepository usuarioRepository, BCryptPasswordEncoder encoder) {
 		this.usuarioRepository = usuarioRepository;
+		this.encoder = encoder;
 	}
 
 	public Usuario findById(Long id) {
@@ -39,12 +43,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario create(UsuarioDTO usuarioDTO) {
 		usuarioDTO.setId(null);
-
+		encryptPassword(usuarioDTO);
 		validaCPF(usuarioDTO);
 		validaEmail(usuarioDTO);
 
 		Usuario usuario = new Usuario(usuarioDTO);
 		return usuarioRepository.save(usuario);
+	}
+
+	private void encryptPassword(UsuarioDTO usuarioDTO) {
+		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
 	}
 
 	@Override
