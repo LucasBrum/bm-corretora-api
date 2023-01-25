@@ -1,4 +1,4 @@
-package br.com.bm.corretora.enums;
+package br.com.bm.corretora.api.enums;
 
 import java.util.stream.Stream;
 

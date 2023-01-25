@@ -25,7 +25,22 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.7.0</version>
 		</dependency>
 
 		<dependency>
@@ -39,6 +54,14 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -65,7 +88,24 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>br/com/bm/corretora/api/dto/**</exclude>
+						<exclude>br/com/bm/corretora/api/entity/**</exclude>
+						<exclude>br/com/bm/corretora/api/enums/**</exclude>
+						<exclude>br/com/bm/corretora/api/exception/**</exclude>
+						<exclude>br/com/bm/corretora/api/util/**</exclude>
+						<exclude>br/com/bm/corretora/api/config/**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
+<!--# Configurar o Coverage em algum momento	-->
+<!--https://gainjavaknowledge.medium.com/spring-boot-code-analysis-with-sonarqube-4d953ca8f09e&ndash;&gt;-->
 
 </project>
