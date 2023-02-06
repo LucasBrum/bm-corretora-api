@@ -52,7 +52,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	private void encryptPassword(UsuarioDTO usuarioDTO) {
-		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
+		String senhaCriptografada = encoder.encode(usuarioDTO.getSenha());
+		usuarioDTO.setSenha(senhaCriptografada);
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,9 @@ public class UsuarioServiceTests {
     @Mock
     private UsuarioRepository usuarioRepository;
 
+    @Mock
+    private BCryptPasswordEncoder encoder;
+
     private UsuarioDTO usuarioDTO;
 
     private Usuario usuario;
@@ -42,6 +46,7 @@ public class UsuarioServiceTests {
                 .cpf("64484299054")
                 .email("alexsilva@gmail.com")
                 .nome("Alex Silva")
+                .telefone("2198574433")
                 .senha("123456789")
                 .build();
 
@@ -51,8 +56,8 @@ public class UsuarioServiceTests {
     @Test
     @DisplayName("Criar Usuario")
     public void testCreateUsuario() {
-        given(usuarioRepository.save(usuario)).willReturn(usuario);
-
+        given(usuarioRepository.save(any())).willReturn(usuario);
+        given(encoder.encode(anyString())).willReturn("senhaPasswordTest");
         Usuario usuarioCriado = usuarioService.create(usuarioDTO);
 
         assertThat(usuarioCriado).isNotNull();
