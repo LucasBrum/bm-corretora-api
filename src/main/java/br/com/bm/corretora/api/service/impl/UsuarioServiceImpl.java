@@ -74,7 +74,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void delete(Long id) {
 		Usuario usuarioEncontrado = findById(id);
 
-		usuarioRepository.deleteById(id);
+		usuarioRepository.deleteById(usuarioEncontrado.getId());
 	}
 
 	private void validaCPF(UsuarioDTO usuarioDTO) {

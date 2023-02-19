@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  myCollectionDB:
+  BM-Corretora-DB:
     image: 'postgres:latest'
     ports:
     - "5433:5432"
