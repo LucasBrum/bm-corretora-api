@@ -55,6 +55,7 @@ public class SecurityConfig  {
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(authenticationConfiguration), jwtUtil));
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(authenticationConfiguration), jwtUtil, userDetailsService));
 		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll()
+				.antMatchers(HttpMethod.POST, "/login").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll().anyRequest().authenticated();
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
