@@ -56,7 +56,8 @@ public class SecurityConfig  {
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(authenticationConfiguration), jwtUtil, userDetailsService));
 		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll()
 				.antMatchers(HttpMethod.POST, "/login").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll().anyRequest().authenticated();
+				.antMatchers(HttpMethod.POST, "/api/usuarios").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/seguradoras").permitAll().anyRequest().authenticated();
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
