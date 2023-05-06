@@ -13,4 +13,7 @@ public interface ProdutoService {
 	Produto create(ProdutoDTO produtoDTO);
 
 	Produto update(Long id, ProdutoDTO produtoDTO);
+
+	List<Produto> findProdutosByClienteId(Long idCliente);
+
 }

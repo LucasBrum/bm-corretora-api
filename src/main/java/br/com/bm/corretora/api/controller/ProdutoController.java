@@ -53,6 +53,14 @@ public class ProdutoController {
         return ResponseEntity.ok().body(produtoDTOList);
     }
 
+    @GetMapping(value = "/cliente/{idCliente}")
+    public ResponseEntity<List<ProdutoDTO>> findProdutosByClienteId(@PathVariable Long idCliente) {
+        List<Produto> produtoList = produtoService.findProdutosByClienteId(idCliente);
+        List<ProdutoDTO> produtoDTOList = produtoList.stream().map(produto -> new ProdutoDTO(produto)).toList();
+
+        return ResponseEntity.ok().body(produtoDTOList);
+    }
+
     @PostMapping
     public ResponseEntity<ProdutoDTO> create(@Valid @RequestBody ProdutoDTO produtoDTO) {
         Produto produto = produtoService.create(produtoDTO);
