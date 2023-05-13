@@ -32,7 +32,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/categorias")
-    public List<ProdutoEnum> listarCategorias() {
+    public List<ProdutoEnum> findCategorias() {
 
         return Arrays.stream(ProdutoEnum.values()).toList();
     }
