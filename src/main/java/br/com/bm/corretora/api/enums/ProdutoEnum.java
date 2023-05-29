@@ -1,5 +1,6 @@
 package br.com.bm.corretora.api.enums;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public enum ProdutoEnum {
@@ -32,8 +33,8 @@ public enum ProdutoEnum {
         this.nome = nome;
     }
 
-    public String[] getNomes() {
-        return Stream.of(ProdutoEnum.values()).map(ProdutoEnum::getNome).toArray(String[]::new);
+    public static List<String> getNomes() {
+        return Stream.of(ProdutoEnum.values()).map(ProdutoEnum::getNome).toList();
     }
 
 }

@@ -20,6 +20,8 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @RestController
 @RequestMapping("/api/produtos")
 public class ProdutoController {
@@ -32,9 +34,9 @@ public class ProdutoController {
     }
 
     @GetMapping("/categorias")
-    public List<ProdutoEnum> findCategorias() {
+    public List<String> findCategorias() {
 
-        return Arrays.stream(ProdutoEnum.values()).toList();
+        return ProdutoEnum.getNomes();
     }
 
 
