@@ -49,7 +49,7 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> create(@Valid @RequestBody UsuarioDTO usuarioDTO) {
         Usuario usuario = usuarioService.create(usuarioDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(usuarioDTO);
     }
 
     @PutMapping(value = "/{id}")
