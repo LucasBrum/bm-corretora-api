@@ -3,6 +3,7 @@ package br.com.bm.corretora.api.service.impl;
 import br.com.bm.corretora.api.dto.ProdutoDTO;
 import br.com.bm.corretora.api.entity.Cliente;
 import br.com.bm.corretora.api.entity.Produto;
+import br.com.bm.corretora.api.model.response.QuantidadeProdutosPorTipoResponse;
 import br.com.bm.corretora.api.service.ClienteService;
 import br.com.bm.corretora.api.service.ProdutoService;
 import br.com.bm.corretora.api.exception.ObjectNotFoundException;
@@ -76,8 +77,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Override
 	public List<Produto> findProdutosByClienteId(Long idCliente) {
-
 		return produtoRepository.findProdutosByClienteId(idCliente);
+	}
+
+	@Override
+	public List<QuantidadeProdutosPorTipoResponse> getQuantidadeProdutosPorTipo() {
+
+		return produtoRepository.getQuantidadeProdutosPorTipo();
 	}
 
 }

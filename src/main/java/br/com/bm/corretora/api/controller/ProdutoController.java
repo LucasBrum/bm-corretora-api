@@ -3,8 +3,10 @@ package br.com.bm.corretora.api.controller;
 import br.com.bm.corretora.api.dto.ProdutoDTO;
 import br.com.bm.corretora.api.entity.Produto;
 import br.com.bm.corretora.api.enums.ProdutoEnum;
+import br.com.bm.corretora.api.model.response.QuantidadeProdutosPorTipoResponse;
 import br.com.bm.corretora.api.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,6 +78,13 @@ public class ProdutoController {
         Produto produto = produtoService.update(id, produtoDTO);
 
         return ResponseEntity.ok().body(new ProdutoDTO(produto));
+    }
+
+    @GetMapping("/tipo/quantidade")
+    public ResponseEntity<List<QuantidadeProdutosPorTipoResponse>> listQuantidadeProdutosPorTipo() {
+        List<QuantidadeProdutosPorTipoResponse> artistListResponse = this.produtoService.getQuantidadeProdutosPorTipo();
+
+        return new ResponseEntity<>(artistListResponse, HttpStatus.OK);
     }
 
 
