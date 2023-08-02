@@ -10,7 +10,7 @@ public enum ProdutoEnum {
     CELULAR("Celular"),
     CONDOMINIO("Condomínio"),
     CONSORCIO("Consórcio"),
-    DENTAL("Dental"),
+    DENTAL("Odonto"),
     EMPRESARIAL("Empresarial"),
     ENGENHARIA("Engenharia"),
     ODONTO_PME("Odonto PME"),
