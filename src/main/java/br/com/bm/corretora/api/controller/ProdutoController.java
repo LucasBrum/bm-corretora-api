@@ -1,6 +1,7 @@
 package br.com.bm.corretora.api.controller;
 
 import br.com.bm.corretora.api.dto.ProdutoDTO;
+import br.com.bm.corretora.api.dto.UsuarioDTO;
 import br.com.bm.corretora.api.entity.Produto;
 import br.com.bm.corretora.api.enums.ProdutoEnum;
 import br.com.bm.corretora.api.model.response.QuantidadeProdutosPorTipoResponse;
@@ -8,6 +9,7 @@ import br.com.bm.corretora.api.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,14 +41,6 @@ public class ProdutoController {
     public List<String> findCategorias() {
 
         return ProdutoEnum.getNomes();
-    }
-
-
-    @GetMapping(value = "{id}")
-    public ResponseEntity<ProdutoDTO> findById(@PathVariable Long id) {
-        Produto produto = produtoService.findById(id);
-
-        return ResponseEntity.ok().body(new ProdutoDTO(produto));
     }
 
     @GetMapping
@@ -87,5 +81,18 @@ public class ProdutoController {
         return new ResponseEntity<>(artistListResponse, HttpStatus.OK);
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<ProdutoDTO> findById(@PathVariable Long id) {
+        Produto produto = produtoService.findById(id);
+
+        return ResponseEntity.ok().body(new ProdutoDTO(produto));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<UsuarioDTO> delete(@PathVariable Long id) {
+        produtoService.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
 
 }

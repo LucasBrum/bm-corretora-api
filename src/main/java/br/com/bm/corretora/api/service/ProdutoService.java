@@ -19,4 +19,6 @@ public interface ProdutoService {
 
 	List<QuantidadeProdutosPorTipoResponse> getQuantidadeProdutosPorTipo();
 
+	void delete(Long id);
+
 }

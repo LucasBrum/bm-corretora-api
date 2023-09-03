@@ -86,4 +86,9 @@ public class ProdutoServiceImpl implements ProdutoService {
 		return produtoRepository.getQuantidadeProdutosPorTipo();
 	}
 
+	public void delete(Long id) {
+		this.findById(id);
+		this.produtoRepository.deleteById(id);
+	}
+
 }
