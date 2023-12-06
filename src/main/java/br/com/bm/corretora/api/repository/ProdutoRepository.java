@@ -16,4 +16,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	@Query("SELECT new br.com.bm.corretora.api.model.response.QuantidadeProdutosPorTipoResponse(p.tipo, count(p)) FROM Produto p GROUP BY p.tipo")
 	List<QuantidadeProdutosPorTipoResponse> getQuantidadeProdutosPorTipo();
 
+	List<Produto> findAllByOrderByClienteAsc();
+
 }
