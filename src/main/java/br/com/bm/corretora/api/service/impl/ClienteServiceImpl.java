@@ -32,7 +32,7 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public List<Cliente> findAll() {
 
-		return clienteRepository.findAll();
+		return clienteRepository.findAllByOrderByNomeAsc();
 	}
 
 	@Override
