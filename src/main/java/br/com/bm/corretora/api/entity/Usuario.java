@@ -49,6 +49,7 @@ public class Usuario extends Pessoa {
 		this.telefone = usuarioDTO.getTelefone();
 		this.email = usuarioDTO.getEmail();
 		this.senha = usuarioDTO.getSenha();
+		this.dataNascimento = usuarioDTO.getDataNascimento();
 		addPerfil(PerfilEnum.COLABORADOR);
 	}
 

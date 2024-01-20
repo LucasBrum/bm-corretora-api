@@ -41,12 +41,13 @@ public abstract class Pessoa implements Serializable {
 		super();
 	}
 
-	public Pessoa(Long id, String nome, String cpf, String email, String senha) {
+	public Pessoa(Long id, String nome, String cpf, String email, String senha, LocalDate dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Long getId() {

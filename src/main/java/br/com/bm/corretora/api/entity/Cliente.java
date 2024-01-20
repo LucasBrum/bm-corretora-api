@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serial;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +37,8 @@ public class Cliente extends Pessoa {
 		this.produtos = produtos;
 	}
 
-	public Cliente(Long id, String nome, String cpf, String email, String senha, List<Produto> produtos) {
-		super(id, nome, cpf, email, senha);
+	public Cliente(Long id, String nome, String cpf, String email, String senha, LocalDate dataNascimento, List<Produto> produtos) {
+		super(id, nome, cpf, email, senha, dataNascimento);
 	}
 
 	public Cliente(ClienteDTO clienteDTO) {

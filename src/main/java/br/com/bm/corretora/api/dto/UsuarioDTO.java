@@ -3,6 +3,11 @@ package br.com.bm.corretora.api.dto;
 import br.com.bm.corretora.api.entity.Usuario;
 import br.com.bm.corretora.api.enums.PerfilEnum;
 import br.com.bm.corretora.api.util.Messages;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,6 +46,10 @@ public class UsuarioDTO implements Serializable {
 	@NotNull(message = "O campo Senha é obrigatório.")
 	private String senha;
 
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "O campo Data de nascimento é obrigatório.")
+	private LocalDate dataNascimento;
+
 	private Set<Integer> perfis = new HashSet<>();
 
 	public UsuarioDTO() {
@@ -56,6 +65,7 @@ public class UsuarioDTO implements Serializable {
 		this.telefone = usuario.getTelefone();
 		this.email = usuario.getEmail();
 		this.senha = usuario.getSenha();
+		this.dataNascimento = usuario.getDataNascimento();
 		this.perfis = usuario.getPerfis().stream().map(p -> p.getCodigo()).collect(Collectors.toSet());
 		addPerfil(PerfilEnum.COLABORADOR);
 
